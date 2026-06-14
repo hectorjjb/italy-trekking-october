@@ -152,7 +152,15 @@
     .card,.verdict,.note{box-shadow:none;border:1px solid #e3e3e6;break-inside:avoid;page-break-inside:avoid}
     #map{box-shadow:none;break-inside:avoid;page-break-inside:avoid}
     .card{margin:16px 0}
+    .card-body table{font-size:.82rem}
+    .card-body th,.card-body td{padding:7px 7px}
     a[href]::after{content:""}
+    /* Fit the 6-option comparison table within the page width */
+    .verdict{padding:22px}
+    .table-scroll{overflow:visible}
+    .compare{table-layout:fixed;width:100%}
+    .compare td,.compare th{font-size:.6rem;padding:5px 5px;white-space:normal;word-break:break-word;line-height:1.25}
+    .compare tr td:first-child,.compare tr th:first-child{width:11%}
   }
 
   @media(max-width:640px){
