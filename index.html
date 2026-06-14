@@ -3,108 +3,176 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Italy Trekking — Early October · 3 Options</title>
+<title>Trekking Italy — Early October</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <style>
   :root{
-    --tre:#2e86de;   /* Tre Cime    - blue */
-    --siu:#27ae60;   /* Alpe Siusi  - green */
-    --cin:#e67e22;   /* Cinque Terre- orange */
-    --fra:#8e44ad;   /* Francigena  - purple */
-    --ink:#1f2933;
-    --muted:#6b7280;
-    --line:#e5e7eb;
-    --bg:#f7f8fa;
+    --tre:#0a84ff;   /* Tre Cime    - blue */
+    --siu:#30d158;   /* Alpe Siusi  - green */
+    --cin:#ff9f0a;   /* Cinque Terre- orange */
+    --fra:#bf5af2;   /* Francigena  - purple */
+    --ink:#1d1d1f;
+    --muted:#86868b;
+    --hair:#d2d2d7;
+    --bg:#fbfbfd;
+    --panel:#ffffff;
   }
   *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
   body{
-    margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    color:var(--ink);background:var(--bg);line-height:1.6;
+    margin:0;
+    font-family:"SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.5;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
   }
+  h1,h2,h3,h4{font-weight:600;letter-spacing:-.02em;margin:0}
+
+  /* ---------- HERO ---------- */
   header.hero{
-    background:linear-gradient(135deg,#1f2933 0%,#3a4a5a 100%);
-    color:#fff;padding:48px 24px 40px;text-align:center;
+    text-align:center;padding:120px 24px 80px;background:var(--bg);
   }
-  header.hero h1{margin:0 0 8px;font-size:2rem;letter-spacing:-.5px}
-  header.hero p{margin:4px 0;color:#cbd5e1;font-size:1.05rem}
-  .tag{display:inline-block;margin-top:14px;padding:6px 14px;border-radius:999px;
-    background:rgba(255,255,255,.12);font-size:.85rem;color:#e2e8f0}
-  .wrap{max-width:1000px;margin:0 auto;padding:24px}
-  #map{height:480px;border-radius:14px;box-shadow:0 6px 24px rgba(0,0,0,.12);margin:24px 0}
-  .legend{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;margin:8px 0 0}
-  .legend span{display:inline-flex;align-items:center;gap:7px;font-size:.9rem;font-weight:600}
-  .dot{width:14px;height:14px;border-radius:50%;display:inline-block}
-  .intro{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin:24px 0}
-  .intro h2{margin-top:0}
-  .note{background:#fff7ed;border-left:4px solid #f59e0b;padding:12px 16px;border-radius:8px;font-size:.95rem;margin:14px 0}
-  .card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:28px 0;
-    box-shadow:0 2px 10px rgba(0,0,0,.04)}
-  .card-head{padding:18px 24px;color:#fff;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
-  .card-head h3{margin:0;font-size:1.3rem}
-  .card-head .sub{font-size:.9rem;opacity:.9}
-  .tre .card-head{background:var(--tre)}
-  .siu .card-head{background:var(--siu)}
-  .cin .card-head{background:var(--cin)}
-  .fra .card-head{background:var(--fra)}
-  .card-body{padding:20px 24px}
-  .why{font-size:1rem;margin:0 0 16px}
-  table{width:100%;border-collapse:collapse;font-size:.92rem}
-  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
-  th{background:var(--bg);font-weight:700;font-size:.82rem;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+  header.hero .kicker{
+    color:var(--cin);font-size:1.05rem;font-weight:600;letter-spacing:0;margin:0 0 14px;
+  }
+  header.hero h1{
+    font-size:clamp(2.6rem,7vw,4.5rem);line-height:1.05;font-weight:700;
+    letter-spacing:-.03em;margin:0 0 22px;
+  }
+  header.hero .lede{
+    font-size:clamp(1.15rem,2.4vw,1.55rem);color:var(--muted);font-weight:400;
+    max-width:680px;margin:0 auto;line-height:1.4;
+  }
+  header.hero .tag{
+    display:inline-block;margin-top:34px;padding:9px 20px;border-radius:980px;
+    background:rgba(0,0,0,.05);font-size:.92rem;color:var(--ink);font-weight:500;
+  }
+
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .section-title{
+    text-align:center;font-size:clamp(1.9rem,4vw,2.8rem);font-weight:700;
+    letter-spacing:-.03em;margin:90px 0 8px;
+  }
+  .section-sub{text-align:center;color:var(--muted);font-size:1.1rem;margin:0 0 36px}
+
+  /* ---------- MAP ---------- */
+  #map{height:520px;border-radius:22px;overflow:hidden;margin:28px 0 0;
+    box-shadow:0 12px 40px rgba(0,0,0,.10)}
+  .legend{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;margin:28px 0 0}
+  .legend span{display:inline-flex;align-items:center;gap:9px;font-size:.98rem;font-weight:500;color:var(--ink)}
+  .dot{width:11px;height:11px;border-radius:50%;display:inline-block}
+
+  /* ---------- INTRO / NOTE ---------- */
+  .intro{max-width:760px;margin:48px auto 0;text-align:center}
+  .intro h2{font-size:1.7rem;margin:0 0 16px}
+  .intro p{font-size:1.18rem;color:var(--muted);line-height:1.55;font-weight:400}
+  .note{
+    background:#fff;border:1px solid var(--hair);border-radius:16px;
+    padding:20px 24px;font-size:1rem;color:var(--ink);margin:28px auto 0;max-width:820px;
+    line-height:1.5;text-align:left;
+  }
+  .note strong{font-weight:600}
+
+  /* ---------- CARDS ---------- */
+  .card{
+    background:var(--panel);border-radius:24px;overflow:hidden;margin:28px 0;
+    box-shadow:0 4px 24px rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.04);
+  }
+  .card-head{
+    padding:34px 36px 26px;display:flex;align-items:baseline;justify-content:space-between;
+    flex-wrap:wrap;gap:8px;position:relative;
+  }
+  .card-head::before{
+    content:"";position:absolute;left:0;top:0;height:100%;width:5px;
+  }
+  .tre .card-head::before{background:var(--tre)}
+  .siu .card-head::before{background:var(--siu)}
+  .cin .card-head::before{background:var(--cin)}
+  .fra .card-head::before{background:var(--fra)}
+  .card-head h3{font-size:1.75rem;font-weight:700;letter-spacing:-.02em}
+  .tre .card-head h3 .num{color:var(--tre)}
+  .siu .card-head h3 .num{color:var(--siu)}
+  .cin .card-head h3 .num{color:var(--cin)}
+  .fra .card-head h3 .num{color:var(--fra)}
+  .card-head .sub{font-size:1rem;color:var(--muted);font-weight:400}
+  .card-body{padding:0 36px 34px}
+  .why{font-size:1.12rem;margin:0 0 24px;color:#33333a;line-height:1.55}
+  .why strong{color:var(--ink);font-weight:600}
+
+  /* ---------- TABLES ---------- */
+  table{width:100%;border-collapse:collapse;font-size:.98rem;margin:8px 0}
+  th,td{text-align:left;padding:13px 12px;border-bottom:1px solid #ededf0;vertical-align:top}
+  th{font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);border-bottom:1px solid var(--hair)}
   tr:last-child td{border-bottom:none}
-  .star{color:#f59e0b}
-  .pills{margin:16px 0 4px;display:flex;gap:8px;flex-wrap:wrap}
-  .pill{font-size:.8rem;padding:4px 10px;border-radius:999px;background:var(--bg);border:1px solid var(--line);color:var(--muted)}
-  .verdict{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin:28px 0}
-  .verdict h2{margin-top:0}
-  .compare td,.compare th{font-size:.9rem}
-  .ok{color:#16a34a;font-weight:600}
-  .warn{color:#d97706;font-weight:600}
-  footer{text-align:center;color:var(--muted);font-size:.82rem;padding:30px 24px 50px}
+  td{color:#33333a}
+  .star{color:var(--cin)}
+
+  /* ---------- PILLS ---------- */
+  .pills{margin:24px 0 4px;display:flex;gap:10px;flex-wrap:wrap}
+  .pill{font-size:.86rem;padding:7px 14px;border-radius:980px;background:#f5f5f7;color:#3c3c43;font-weight:500}
+
+  /* ---------- VERDICT ---------- */
+  .verdict{background:var(--panel);border-radius:24px;padding:40px 40px 36px;margin:36px 0;
+    box-shadow:0 4px 24px rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.04)}
+  .verdict h2{font-size:1.9rem;margin:0 0 8px}
+  .verdict>p{font-size:1.1rem;color:#33333a;line-height:1.55}
+  .compare{margin-top:24px}
+  .compare td,.compare th{font-size:.95rem}
+  .compare tr td:first-child{color:var(--ink);white-space:nowrap}
+  .ok{color:#1a8a3a;font-weight:600}
+  .warn{color:#b25e00;font-weight:600}
+
+  footer{text-align:center;color:var(--muted);font-size:.9rem;padding:70px 24px 90px;line-height:1.6}
+
   @media(max-width:640px){
-    header.hero h1{font-size:1.5rem}
-    #map{height:360px}
-    table{font-size:.82rem}
-    th,td{padding:7px 6px}
+    header.hero{padding:80px 22px 50px}
+    #map{height:380px;border-radius:18px}
+    .card-head,.card-body{padding-left:24px;padding-right:24px}
+    .card-head{padding-top:26px}
+    .card-head h3{font-size:1.4rem}
+    table{font-size:.86rem}
+    th,td{padding:10px 7px}
+    .verdict{padding:28px 22px}
   }
 </style>
 </head>
 <body>
 
 <header class="hero">
-  <h1>🥾 Italy Trekking — Early October</h1>
-  <p>Four hand-picked routes · Dolomites · Liguria coast · Tuscany · 5–7 days</p>
-  <p>Choose your adventure: iconic peaks, gentle meadows, a clifftop coast, or a Tuscan pilgrim walk</p>
-  <div class="tag">Best window: 1–15 October · golden larches, empty trails, crisp light</div>
+  <p class="kicker">Early October · 5–7 days</p>
+  <h1>Trekking Italy</h1>
+  <p class="lede">Four hand-picked routes across the Dolomites, the Ligurian coast and Tuscany — pick the one that fits the group, and let's lock dates.</p>
+  <div class="tag">🍂 Best window: 1–15 October · golden light, empty trails</div>
 </header>
 
 <div class="wrap">
 
   <div class="intro">
     <h2>Why October?</h2>
-    <p>Early October in the Dolomites means <strong>golden larch forests</strong>, dramatic low-angle light on the
-    pale limestone, and trails that are blissfully quiet after the summer crowds. The trade-off: most high mountain
-    huts (<em>rifugi</em>) close between late September and early October, and the first snow can dust the high passes.</p>
-    <div class="note">⚠️ <strong>Planning note:</strong> The classic Dolomites hut-to-hut traverse (Alta Via 1) was
+    <p>Early October is a sweet spot across Italy: golden larches and crisp light in the Dolomites, warm sun and
+    harvest season on the coast and in Tuscany, and blissfully quiet trails everywhere after the summer crowds. The
+    one catch is altitude — high mountain huts (<em>rifugi</em>) start closing in late September, so the routes below
+    are all built around sleeping in towns and hotels rather than huts.</p>
+    <div class="note"><strong>Planning note.</strong> The classic Dolomites hut-to-hut traverse (Alta Via 1) was
     dropped from this shortlist — most of its high <em>rifugi</em> close by late September, so October is poor timing.
     All four options below are <strong>town- or hotel-based</strong> (you sleep in real beds, not huts), which makes
-    them far more reliable for our October dates. Options ③ &amp; ④ (the coast and Tuscany) are lower, warmer, and the
-    most October-proof of all.</div>
+    them far more reliable for our dates. Options ③ &amp; ④ — the coast and Tuscany — are lower, warmer, and the most
+    October-proof of all.</div>
   </div>
 
-  <h2 style="text-align:center">🗺️ The four routes at a glance</h2>
+  <h2 class="section-title">The four routes</h2>
+  <p class="section-sub">At a glance — across northern Italy</p>
+  <div id="map"></div>
   <div class="legend">
     <span><i class="dot" style="background:var(--tre)"></i> Tre Cime / Sesto — Day hikes</span>
     <span><i class="dot" style="background:var(--siu)"></i> Alpe di Siusi — Gentle meadows</span>
     <span><i class="dot" style="background:var(--cin)"></i> Cinque Terre + Portofino — Coast</span>
     <span><i class="dot" style="background:var(--fra)"></i> Via Francigena — Tuscan walk</span>
   </div>
-  <div id="map"></div>
 
   <!-- OPTION 1 -->
   <div class="card tre">
     <div class="card-head">
-      <h3>① Tre Cime / Sesto Dolomites — Iconic Peaks</h3>
+      <h3><span class="num">①</span> Tre Cime / Sesto Dolomites — Iconic Peaks</h3>
       <span class="sub">Valley base: Dobbiaco or Sesto · day hikes</span>
     </div>
     <div class="card-body">
@@ -135,7 +203,7 @@
   <!-- OPTION 2 -->
   <div class="card siu">
     <div class="card-head">
-      <h3>② Alpe di Siusi / Seiser Alm — Gentle Golden Meadows</h3>
+      <h3><span class="num">②</span> Alpe di Siusi / Seiser Alm — Gentle Golden Meadows</h3>
       <span class="sub">Valley base: Castelrotto or Compatsch · day hikes</span>
     </div>
     <div class="card-body">
@@ -165,7 +233,7 @@
   <!-- OPTION 3 -->
   <div class="card cin">
     <div class="card-head">
-      <h3>③ Cinque Terre + Portofino — The Ligurian Coast</h3>
+      <h3><span class="num">③</span> Cinque Terre + Portofino — The Ligurian Coast</h3>
       <span class="sub">Clifftop coastal trails · Levanto → Portovenere · point-to-point</span>
     </div>
     <div class="card-body">
@@ -200,7 +268,7 @@
   <!-- OPTION 4 -->
   <div class="card fra">
     <div class="card-head">
-      <h3>④ Via Francigena — Lucca → Siena (Tuscany)</h3>
+      <h3><span class="num">④</span> Via Francigena — Lucca → Siena (Tuscany)</h3>
       <span class="sub">Town-to-town pilgrim walk · point-to-point · ~135 km</span>
     </div>
     <div class="card-body">
@@ -234,20 +302,21 @@
   </div>
 
   <!-- VERDICT -->
+  <h2 class="section-title">Compare</h2>
+  <p class="section-sub">Four routes, side by side</p>
   <div class="verdict">
-    <h2>📊 Side-by-side comparison</h2>
     <table class="compare">
-      <tr><th></th><th>① Tre Cime / Sesto</th><th>② Alpe di Siusi</th><th>③ Cinque Terre</th><th>④ Via Francigena</th></tr>
+      <tr><th></th><th><span style="color:var(--tre)">①</span> Tre Cime / Sesto</th><th><span style="color:var(--siu)">②</span> Alpe di Siusi</th><th><span style="color:var(--cin)">③</span> Cinque Terre</th><th><span style="color:var(--fra)">④</span> Via Francigena</th></tr>
       <tr><td><strong>Region</strong></td><td>Dolomites</td><td>Dolomites</td><td>Liguria coast</td><td>Tuscany</td></tr>
       <tr><td><strong>Style</strong></td><td>Valley-based day hikes</td><td>Meadow-based day hikes</td><td>Coastal day hikes</td><td>Town-to-town walk</td></tr>
       <tr><td><strong>Total (5–6 days)</strong></td><td>~55 km</td><td>~50 km</td><td>~45–55 km</td><td>~135 km</td></tr>
       <tr><td><strong>Hardest day</strong></td><td>13 km / +900 m</td><td>14 km / +800 m</td><td>12 km / +700 m</td><td>30 km (flat-ish)</td></tr>
       <tr><td><strong>Difficulty</strong></td><td>Moderate</td><td>Easy–Moderate</td><td>Easy–Moderate</td><td>Easy–Moderate</td></tr>
       <tr><td><strong>Sleep</strong></td><td>One hotel base</td><td>One hotel base</td><td>1–2 village bases</td><td>Different town nightly</td></tr>
-      <tr><td><strong>October risk</strong></td><td class="ok">✅ Low</td><td class="ok">✅ Low</td><td class="ok">✅ Lowest (warmest)</td><td class="ok">✅ Lowest</td></tr>
+      <tr><td><strong>October risk</strong></td><td class="ok">Low</td><td class="ok">Low</td><td class="ok">Lowest · warmest</td><td class="ok">Lowest</td></tr>
       <tr><td><strong>Best for</strong></td><td>Photographers / peak scenery</td><td>Relaxed pace, mixed group</td><td>Sea, sun, food &amp; wine</td><td>Culture, wine &amp; food</td></tr>
     </table>
-    <p style="margin-top:18px"><strong>🏆 My steer for early October:</strong> For mountain scenery, go with
+    <p style="margin-top:26px"><strong>My steer for early October.</strong> For mountain scenery, go with
     <strong>① Tre Cime / Sesto</strong> for jaw-dropping peaks with low hassle, or <strong>② Alpe di Siusi</strong>
     if we want it relaxed. For the warmest, most reliable weather with sea views and great food, the
     <strong>③ Cinque Terre + Portofino</strong> coast is my top pick — even more weather-proof than the mountains.
@@ -256,9 +325,9 @@
   </div>
 
   <footer>
-    Distances &amp; elevations are typical published figures and vary by exact trailheads/variants — treat as planning
-    estimates, not GPS-exact. Map data © OpenStreetMap contributors.<br>
-    Made for our October trekking trip 🍂 · Pick your favourite and let's lock dates!
+    Distances and elevations are typical published figures and vary by exact trailheads and variants — treat as
+    planning estimates, not GPS-exact. Map data © OpenStreetMap contributors © CARTO.<br>
+    Made for our October trekking trip · pick a favourite and let's lock dates.
   </footer>
 
 </div>
