@@ -131,6 +131,30 @@
 
   footer{text-align:center;color:var(--muted);font-size:.9rem;padding:70px 24px 90px;line-height:1.6}
 
+  /* ---------- PDF BUTTON ---------- */
+  .pdf-btn{
+    position:fixed;top:20px;right:20px;z-index:1000;display:inline-flex;align-items:center;gap:8px;
+    padding:11px 20px;border-radius:980px;background:rgba(29,29,31,.82);color:#fff;text-decoration:none;
+    font-size:.92rem;font-weight:500;-webkit-backdrop-filter:saturate(180%) blur(14px);
+    backdrop-filter:saturate(180%) blur(14px);box-shadow:0 4px 18px rgba(0,0,0,.20);transition:background .2s,transform .2s;
+  }
+  .pdf-btn:hover{background:#1d1d1f;transform:translateY(-1px)}
+  .pdf-btn:active{transform:translateY(0)}
+
+  /* ---------- PRINT ---------- */
+  @media print{
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    body{background:#fff}
+    .pdf-btn{display:none}
+    header.hero{padding:24px 0 12px}
+    .wrap{max-width:none;padding:0}
+    .section-title{margin-top:28px}
+    .card,.verdict,.note{box-shadow:none;border:1px solid #e3e3e6;break-inside:avoid;page-break-inside:avoid}
+    #map{box-shadow:none;break-inside:avoid;page-break-inside:avoid}
+    .card{margin:16px 0}
+    a[href]::after{content:""}
+  }
+
   @media(max-width:640px){
     header.hero{padding:80px 22px 50px}
     #map{height:380px;border-radius:18px}
@@ -144,6 +168,8 @@
 </style>
 </head>
 <body>
+
+<a class="pdf-btn" href="trekking-italy-october.pdf" download>⬇&nbsp; Download PDF</a>
 
 <header class="hero">
   <p class="kicker">Early October · 5–7 days</p>
