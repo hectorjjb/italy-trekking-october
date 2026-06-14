@@ -32,6 +32,20 @@ map with [CARTO](https://carto.com/) Positron tiles — no build step).
 
 Changes go live at the URL above ~30–60s after pushing, via **GitHub Pages** (served from `main`).
 
+## PDF export
+
+The page has a **Download PDF** button (top-right) linking to [`trekking-italy-october.pdf`](trekking-italy-october.pdf),
+a static export with the map baked in. Viewers can also use their browser's *Print → Save as PDF* (print styles included).
+
+To refresh the PDF after content changes (regenerates from the live site so map tiles render):
+
+```bash
+./make-pdf.sh      # writes trekking-italy-october.pdf
+./update.sh "Refresh PDF"
+```
+
+Requires a Chromium-based browser (Chrome, Edge, or Chromium).
+
 ## Notes
 
 - Distances and elevations are typical published figures — planning estimates, not GPS-exact.
