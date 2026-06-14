@@ -11,6 +11,8 @@
     --siu:#30d158;   /* Alpe Siusi  - green */
     --cin:#ff9f0a;   /* Cinque Terre- orange */
     --fra:#bf5af2;   /* Francigena  - purple */
+    --amf:#ff375f;   /* Amalfi      - pink/red */
+    --sel:#5e5ce6;   /* Selvaggio   - indigo */
     --ink:#1d1d1f;
     --muted:#86868b;
     --hair:#d2d2d7;
@@ -88,11 +90,15 @@
   .siu .card-head::before{background:var(--siu)}
   .cin .card-head::before{background:var(--cin)}
   .fra .card-head::before{background:var(--fra)}
+  .amf .card-head::before{background:var(--amf)}
+  .sel .card-head::before{background:var(--sel)}
   .card-head h3{font-size:1.75rem;font-weight:700;letter-spacing:-.02em}
   .tre .card-head h3 .num{color:var(--tre)}
   .siu .card-head h3 .num{color:var(--siu)}
   .cin .card-head h3 .num{color:var(--cin)}
   .fra .card-head h3 .num{color:var(--fra)}
+  .amf .card-head h3 .num{color:var(--amf)}
+  .sel .card-head h3 .num{color:var(--sel)}
   .card-head .sub{font-size:1rem;color:var(--muted);font-weight:400}
   .card-body{padding:0 36px 34px}
   .why{font-size:1.12rem;margin:0 0 24px;color:#33333a;line-height:1.55}
@@ -109,6 +115,7 @@
   /* ---------- PILLS ---------- */
   .pills{margin:24px 0 4px;display:flex;gap:10px;flex-wrap:wrap}
   .pill{font-size:.86rem;padding:7px 14px;border-radius:980px;background:#f5f5f7;color:#3c3c43;font-weight:500}
+  .pill.good{background:#e8f8ee;color:#1a8a3a}
 
   /* ---------- VERDICT ---------- */
   .verdict{background:var(--panel);border-radius:24px;padding:40px 40px 36px;margin:36px 0;
@@ -116,7 +123,8 @@
   .verdict h2{font-size:1.9rem;margin:0 0 8px}
   .verdict>p{font-size:1.1rem;color:#33333a;line-height:1.55}
   .compare{margin-top:24px}
-  .compare td,.compare th{font-size:.95rem}
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .compare td,.compare th{font-size:.95rem;white-space:nowrap}
   .compare tr td:first-child{color:var(--ink);white-space:nowrap}
   .ok{color:#1a8a3a;font-weight:600}
   .warn{color:#b25e00;font-weight:600}
@@ -140,7 +148,7 @@
 <header class="hero">
   <p class="kicker">Early October · 5–7 days</p>
   <h1>Trekking Italy</h1>
-  <p class="lede">Four hand-picked routes across the Dolomites, the Ligurian coast and Tuscany — pick the one that fits the group, and let's lock dates.</p>
+  <p class="lede">Six hand-picked routes — from the Dolomites and the Ligurian coast to Tuscany, the Amalfi cliffs and wild Sardinia. Pick the one that fits the group, and let's lock dates.</p>
   <div class="tag">🍂 Best window: 1–15 October · golden light, empty trails</div>
 </header>
 
@@ -154,19 +162,21 @@
     are all built around sleeping in towns and hotels rather than huts.</p>
     <div class="note"><strong>Planning note.</strong> The classic Dolomites hut-to-hut traverse (Alta Via 1) was
     dropped from this shortlist — most of its high <em>rifugi</em> close by late September, so October is poor timing.
-    All four options below are <strong>town- or hotel-based</strong> (you sleep in real beds, not huts), which makes
-    them far more reliable for our dates. Options ③ &amp; ④ — the coast and Tuscany — are lower, warmer, and the most
-    October-proof of all.</div>
+    All six options below are <strong>town- or hotel-based</strong> (you sleep in real beds, not huts), which makes
+    them far more reliable for our dates. The southern and coastal options — Cinque Terre, Amalfi and Sardinia — are
+    the warmest and most October-proof of all.</div>
   </div>
 
-  <h2 class="section-title">The four routes</h2>
-  <p class="section-sub">At a glance — across northern Italy</p>
+  <h2 class="section-title">The six routes</h2>
+  <p class="section-sub">At a glance — from the Alps to the Mediterranean</p>
   <div id="map"></div>
   <div class="legend">
     <span><i class="dot" style="background:var(--tre)"></i> Tre Cime / Sesto — Day hikes</span>
     <span><i class="dot" style="background:var(--siu)"></i> Alpe di Siusi — Gentle meadows</span>
     <span><i class="dot" style="background:var(--cin)"></i> Cinque Terre + Portofino — Coast</span>
     <span><i class="dot" style="background:var(--fra)"></i> Via Francigena — Tuscan walk</span>
+    <span><i class="dot" style="background:var(--amf)"></i> Path of the Gods — Amalfi</span>
+    <span><i class="dot" style="background:var(--sel)"></i> Selvaggio Blu — Sardinia</span>
   </div>
 
   <!-- OPTION 1 -->
@@ -195,7 +205,7 @@
         <span class="pill">7–13 km/day</span>
         <span class="pill">3–5 h walking</span>
         <span class="pill">Daypack only</span>
-        <span class="pill" style="background:#ecfdf5;border-color:#a7f3d0;color:#047857">✅ Reliable in October</span>
+        <span class="pill good">Reliable in October</span>
       </div>
     </div>
   </div>
@@ -225,7 +235,7 @@
         <span class="pill">7–14 km/day</span>
         <span class="pill">2–5 h walking</span>
         <span class="pill">Daypack only</span>
-        <span class="pill" style="background:#ecfdf5;border-color:#a7f3d0;color:#047857">✅ Easiest logistics</span>
+        <span class="pill good">Easiest logistics</span>
       </div>
     </div>
   </div>
@@ -257,7 +267,7 @@
         <span class="pill">7–12 km/day</span>
         <span class="pill">3–5 h walking</span>
         <span class="pill">Daypack only</span>
-        <span class="pill" style="background:#ecfdf5;border-color:#a7f3d0;color:#047857">✅ Best October weather</span>
+        <span class="pill good">Best October weather</span>
       </div>
       <div class="note" style="margin-top:16px">ℹ️ <strong>Note:</strong> Some low coastal links (e.g. the
       <em>Via dell'Amore</em>) open/close depending on landslide repairs — the higher trails used above are always
@@ -293,7 +303,7 @@
         <span class="pill">13–30 km/day</span>
         <span class="pill">Mostly flat–rolling</span>
         <span class="pill">Daypack (bag transfer possible)</span>
-        <span class="pill" style="background:#ecfdf5;border-color:#a7f3d0;color:#047857">✅ Most October-proof</span>
+        <span class="pill good">Most October-proof</span>
       </div>
       <div class="note" style="margin-top:16px">ℹ️ <strong>Note:</strong> This is the route from a friend's suggestion.
       It's <em>not</em> in the Dolomites — it's central Tuscany — so it offers a genuinely different style: cultural /
@@ -301,27 +311,99 @@
     </div>
   </div>
 
+  <!-- OPTION 5 -->
+  <div class="card amf">
+    <div class="card-head">
+      <h3><span class="num">⑤</span> Path of the Gods — Amalfi Coast</h3>
+      <span class="sub">Sorrento peninsula + Amalfi · day hikes from a coastal base</span>
+    </div>
+    <div class="card-body">
+      <p class="why"><strong>Why:</strong> Southern Italy's most famous trail — the <em>Sentiero degli Dei</em>, a
+      clifftop balcony path soaring high above the sea between Agerola and Positano, with lemon groves, Capri on the
+      horizon and pastel villages tumbling to the water. Warmer and more dramatic than Cinque Terre, and October is
+      ideal: summer heat and crowds gone, sea still mild.</p>
+      <table>
+        <tr><th>Day</th><th>Hike</th><th>Distance</th><th>Climb</th><th>Highlight</th></tr>
+        <tr><td>1</td><td>Path of the Gods: Bomerano → Nocelle → Positano <span class="star">★</span></td><td>~8 km</td><td>−700 m</td><td>The legendary balcony trail</td></tr>
+        <tr><td>2</td><td>Valle delle Ferriere (Amalfi → Pontone)</td><td>~9 km</td><td>+550 m</td><td>Waterfalls &amp; lush ravine</td></tr>
+        <tr><td>3</td><td>Ravello → Atrani via the lemon paths</td><td>~7 km</td><td>+300 m</td><td>Villa gardens, sea balconies</td></tr>
+        <tr><td>4</td><td>Punta Campanella (Sorrento tip)</td><td>~11 km</td><td>+450 m</td><td>Capri across the strait</td></tr>
+        <tr><td>5</td><td>Capri: Monte Solaro &amp; Pizzolungo loop <span class="star">★</span></td><td>~10 km</td><td>+600 m</td><td>Faraglioni sea stacks</td></tr>
+        <tr><td>6</td><td>Bay of Ieranto / rest in Sorrento</td><td>~8 km</td><td>+350 m</td><td>Hidden turquoise cove</td></tr>
+      </table>
+      <p style="margin-top:14px"><strong>Highlights:</strong> Path of the Gods, Positano, Ravello, Capri's Faraglioni,
+      lemon groves, limoncello &amp; seafood.</p>
+      <div class="pills">
+        <span class="pill">Difficulty: Moderate</span>
+        <span class="pill">7–11 km/day</span>
+        <span class="pill">Stone steps &amp; clifftops</span>
+        <span class="pill">Daypack only</span>
+        <span class="pill good">Warm in October</span>
+      </div>
+      <div class="note" style="margin-top:16px">ℹ️ <strong>Note:</strong> Furthest south — more travel to get there
+      (fly to Naples). Lots of stone staircases; can be busy near Positano/Capri even in October, but trails thin out
+      quickly. Easy to base in one town (Sorrento or Amalfi) and use buses/ferries.</div>
+    </div>
+  </div>
+
+  <!-- OPTION 6 -->
+  <div class="card sel">
+    <div class="card-head">
+      <h3><span class="num">⑥</span> Selvaggio Blu — Sardinia</h3>
+      <span class="sub">Golfo di Orosei · wild coast traverse · point-to-point</span>
+    </div>
+    <div class="card-body">
+      <p class="why"><strong>Why:</strong> Italy's wildest and most legendary trek — limestone cliffs plunging into a
+      turquoise sea, hidden coves reachable only on foot or by boat, no roads, no villages. A true adventure. October
+      is the perfect window: the fierce summer heat is gone and the sea is still swimmable.</p>
+      <table>
+        <tr><th>Day</th><th>From → To</th><th>Distance</th><th>Terrain</th><th>Highlight</th></tr>
+        <tr><td>1</td><td>Santa Maria Navarrese → Pedra Longa</td><td>~7 km</td><td>Coastal path</td><td>Soaring sea spire</td></tr>
+        <tr><td>2</td><td>Pedra Longa → Cala Goloritzé <span class="star">★</span></td><td>~12 km</td><td>Rocky, exposed</td><td>Iconic arch &amp; pinnacle</td></tr>
+        <tr><td>3</td><td>Goloritzé → Cala Mariolu</td><td>~9 km</td><td>Scramble sections</td><td>Pebble-and-turquoise cove</td></tr>
+        <tr><td>4</td><td>Mariolu → Cala Luna</td><td>~13 km</td><td>Remote, technical</td><td>Sea caves &amp; beach</td></tr>
+        <tr><td>5</td><td>Cala Luna → Cala Gonone (finish)</td><td>~9 km</td><td>Cliff path</td><td>Return to civilisation</td></tr>
+      </table>
+      <p style="margin-top:14px"><strong>Highlights:</strong> Cala Goloritzé, Cala Mariolu, Cala Luna, swimming in
+      empty coves, total wilderness immersion.</p>
+      <div class="pills">
+        <span class="pill">Difficulty: Hard</span>
+        <span class="pill">7–13 km/day</span>
+        <span class="pill">Scrambling / some abseils</span>
+        <span class="pill">Guide recommended</span>
+        <span class="pill good">Ideal in October</span>
+      </div>
+      <div class="note" style="margin-top:16px">⚠️ <strong>Note:</strong> The boldest, most committing option — sections
+      involve scrambling and short abseils, with food/water dropped by boat; a local guide is strongly advised. A
+      gentler "cove-to-cove" day-hike version (with boat transfers between beaches) exists if the group isn't technical.
+      Fly to Cagliari or Olbia.</div>
+    </div>
+  </div>
+
   <!-- VERDICT -->
   <h2 class="section-title">Compare</h2>
-  <p class="section-sub">Four routes, side by side</p>
+  <p class="section-sub">Six routes, side by side</p>
   <div class="verdict">
+    <div class="table-scroll">
     <table class="compare">
-      <tr><th></th><th><span style="color:var(--tre)">①</span> Tre Cime / Sesto</th><th><span style="color:var(--siu)">②</span> Alpe di Siusi</th><th><span style="color:var(--cin)">③</span> Cinque Terre</th><th><span style="color:var(--fra)">④</span> Via Francigena</th></tr>
-      <tr><td><strong>Region</strong></td><td>Dolomites</td><td>Dolomites</td><td>Liguria coast</td><td>Tuscany</td></tr>
-      <tr><td><strong>Style</strong></td><td>Valley-based day hikes</td><td>Meadow-based day hikes</td><td>Coastal day hikes</td><td>Town-to-town walk</td></tr>
-      <tr><td><strong>Total (5–6 days)</strong></td><td>~55 km</td><td>~50 km</td><td>~45–55 km</td><td>~135 km</td></tr>
-      <tr><td><strong>Hardest day</strong></td><td>13 km / +900 m</td><td>14 km / +800 m</td><td>12 km / +700 m</td><td>30 km (flat-ish)</td></tr>
-      <tr><td><strong>Difficulty</strong></td><td>Moderate</td><td>Easy–Moderate</td><td>Easy–Moderate</td><td>Easy–Moderate</td></tr>
-      <tr><td><strong>Sleep</strong></td><td>One hotel base</td><td>One hotel base</td><td>1–2 village bases</td><td>Different town nightly</td></tr>
-      <tr><td><strong>October risk</strong></td><td class="ok">Low</td><td class="ok">Low</td><td class="ok">Lowest · warmest</td><td class="ok">Lowest</td></tr>
-      <tr><td><strong>Best for</strong></td><td>Photographers / peak scenery</td><td>Relaxed pace, mixed group</td><td>Sea, sun, food &amp; wine</td><td>Culture, wine &amp; food</td></tr>
+      <tr><th></th><th><span style="color:var(--tre)">①</span> Tre Cime / Sesto</th><th><span style="color:var(--siu)">②</span> Alpe di Siusi</th><th><span style="color:var(--cin)">③</span> Cinque Terre</th><th><span style="color:var(--fra)">④</span> Via Francigena</th><th><span style="color:var(--amf)">⑤</span> Amalfi</th><th><span style="color:var(--sel)">⑥</span> Selvaggio Blu</th></tr>
+      <tr><td><strong>Region</strong></td><td>Dolomites</td><td>Dolomites</td><td>Liguria coast</td><td>Tuscany</td><td>Amalfi (south)</td><td>Sardinia</td></tr>
+      <tr><td><strong>Style</strong></td><td>Valley day hikes</td><td>Meadow day hikes</td><td>Coastal day hikes</td><td>Town-to-town walk</td><td>Clifftop day hikes</td><td>Wild coast traverse</td></tr>
+      <tr><td><strong>Total (5–6 days)</strong></td><td>~55 km</td><td>~50 km</td><td>~45–55 km</td><td>~135 km</td><td>~50 km</td><td>~50 km</td></tr>
+      <tr><td><strong>Hardest day</strong></td><td>13 km / +900 m</td><td>14 km / +800 m</td><td>12 km / +700 m</td><td>30 km (flat-ish)</td><td>11 km / +600 m</td><td>13 km (technical)</td></tr>
+      <tr><td><strong>Difficulty</strong></td><td>Moderate</td><td>Easy–Moderate</td><td>Easy–Moderate</td><td>Easy–Moderate</td><td>Moderate</td><td class="warn">Hard</td></tr>
+      <tr><td><strong>Sleep</strong></td><td>One hotel base</td><td>One hotel base</td><td>1–2 village bases</td><td>Different town nightly</td><td>One coastal base</td><td>Bivouac / wild</td></tr>
+      <tr><td><strong>October risk</strong></td><td class="ok">Low</td><td class="ok">Low</td><td class="ok">Lowest · warmest</td><td class="ok">Lowest</td><td class="ok">Lowest · warmest</td><td class="ok">Low · ideal season</td></tr>
+      <tr><td><strong>Best for</strong></td><td>Peak scenery</td><td>Relaxed, mixed group</td><td>Sea, sun, food</td><td>Culture &amp; wine</td><td>Iconic clifftops</td><td>Wild adventure</td></tr>
     </table>
+    </div>
     <p style="margin-top:26px"><strong>My steer for early October.</strong> For mountain scenery, go with
-    <strong>① Tre Cime / Sesto</strong> for jaw-dropping peaks with low hassle, or <strong>② Alpe di Siusi</strong>
-    if we want it relaxed. For the warmest, most reliable weather with sea views and great food, the
-    <strong>③ Cinque Terre + Portofino</strong> coast is my top pick — even more weather-proof than the mountains.
-    Choose <strong>④ Via Francigena</strong> if the group specifically wants the pilgrim-walk / medieval-town
-    experience. (The classic Alta Via 1 traverse was dropped — October is too late for its huts.)</p>
+    <strong>① Tre Cime / Sesto</strong> for jaw-dropping peaks, or <strong>② Alpe di Siusi</strong> for a relaxed pace.
+    For the warmest, most reliable weather, the coast wins: <strong>③ Cinque Terre + Portofino</strong> is the easy
+    crowd-pleaser, while <strong>⑤ Path of the Gods (Amalfi)</strong> is the more dramatic, iconic southern option.
+    Pick <strong>④ Via Francigena</strong> for a cultural pilgrim walk through Tuscany, or <strong>⑥ Selvaggio Blu</strong>
+    if the group is fit and wants a genuine wild adventure. (The classic Alta Via 1 traverse was dropped — October is
+    too late for its huts.)</p>
   </div>
 
   <footer>
@@ -341,7 +423,7 @@
     attribution: '© OpenStreetMap contributors © CARTO'
   }).addTo(map);
 
-  var colors = { tre:'#2e86de', siu:'#27ae60', cin:'#e67e22', fra:'#8e44ad' };
+  var colors = { tre:'#0a84ff', siu:'#30d158', cin:'#ff9f0a', fra:'#bf5af2', amf:'#ff375f', sel:'#5e5ce6' };
 
   function marker(lat, lng, color, label){
     var m = L.circleMarker([lat,lng], {
@@ -417,8 +499,35 @@
   L.polyline(fra.map(p=>[p[0],p[1]]), {color:colors.fra, weight:4, opacity:.85}).addTo(map);
   fra.forEach(p=>marker(p[0],p[1],colors.fra,p[2]));
 
+  // ---- Option 5: Path of the Gods / Amalfi Coast ----
+  var amf = [
+    [40.6263,14.3757,'Sorrento (base)'],
+    [40.6280,14.4850,'Positano'],
+    [40.6310,14.4980,'★ Nocelle (Path of the Gods)'],
+    [40.6230,14.5360,'Bomerano / Agerola'],
+    [40.6340,14.6027,'Amalfi'],
+    [40.6490,14.6110,'Ravello']
+  ];
+  L.polyline(amf.map(p=>[p[0],p[1]]), {color:colors.amf, weight:4, opacity:.85}).addTo(map);
+  amf.forEach(p=>marker(p[0],p[1],colors.amf,p[2]));
+  // Capri add-on (island, separate marker)
+  var amfCapri = [[40.5510,14.2430,'★ Capri (Monte Solaro)']];
+  amfCapri.forEach(p=>marker(p[0],p[1],colors.amf,p[2]));
+
+  // ---- Option 6: Selvaggio Blu / Sardinia (Golfo di Orosei) ----
+  var sel = [
+    [39.9870,9.6920,'Santa Maria Navarrese (start)'],
+    [40.0260,9.6960,'Pedra Longa'],
+    [40.1160,9.6720,'★ Cala Goloritzé'],
+    [40.1420,9.6480,'Cala Mariolu'],
+    [40.2280,9.6210,'Cala Luna'],
+    [40.2820,9.6300,'Cala Gonone (finish)']
+  ];
+  L.polyline(sel.map(p=>[p[0],p[1]]), {color:colors.sel, weight:4, opacity:.85}).addTo(map);
+  sel.forEach(p=>marker(p[0],p[1],colors.sel,p[2]));
+
   // Fit all
-  var all = tre.concat(siu).concat(cin).concat(cinPorto).concat(fra).map(p=>[p[0],p[1]]);
+  var all = tre.concat(siu).concat(cin).concat(cinPorto).concat(fra).concat(amf).concat(amfCapri).concat(sel).map(p=>[p[0],p[1]]);
   map.fitBounds(L.latLngBounds(all).pad(0.12));
 </script>
 
