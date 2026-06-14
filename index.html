@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Italy Trekking — Early October · 3 Options</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+  :root{
+    --tre:#2e86de;   /* Tre Cime    - blue */
+    --siu:#27ae60;   /* Alpe Siusi  - green */
+    --cin:#e67e22;   /* Cinque Terre- orange */
+    --fra:#8e44ad;   /* Francigena  - purple */
+    --ink:#1f2933;
+    --muted:#6b7280;
+    --line:#e5e7eb;
+    --bg:#f7f8fa;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.6;
+  }
+  header.hero{
+    background:linear-gradient(135deg,#1f2933 0%,#3a4a5a 100%);
+    color:#fff;padding:48px 24px 40px;text-align:center;
+  }
+  header.hero h1{margin:0 0 8px;font-size:2rem;letter-spacing:-.5px}
+  header.hero p{margin:4px 0;color:#cbd5e1;font-size:1.05rem}
+  .tag{display:inline-block;margin-top:14px;padding:6px 14px;border-radius:999px;
+    background:rgba(255,255,255,.12);font-size:.85rem;color:#e2e8f0}
+  .wrap{max-width:1000px;margin:0 auto;padding:24px}
+  #map{height:480px;border-radius:14px;box-shadow:0 6px 24px rgba(0,0,0,.12);margin:24px 0}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;margin:8px 0 0}
+  .legend span{display:inline-flex;align-items:center;gap:7px;font-size:.9rem;font-weight:600}
+  .dot{width:14px;height:14px;border-radius:50%;display:inline-block}
+  .intro{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin:24px 0}
+  .intro h2{margin-top:0}
+  .note{background:#fff7ed;border-left:4px solid #f59e0b;padding:12px 16px;border-radius:8px;font-size:.95rem;margin:14px 0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:28px 0;
+    box-shadow:0 2px 10px rgba(0,0,0,.04)}
+  .card-head{padding:18px 24px;color:#fff;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  .card-head h3{margin:0;font-size:1.3rem}
+  .card-head .sub{font-size:.9rem;opacity:.9}
+  .tre .card-head{background:var(--tre)}
+  .siu .card-head{background:var(--siu)}
+  .cin .card-head{background:var(--cin)}
+  .fra .card-head{background:var(--fra)}
+  .card-body{padding:20px 24px}
+  .why{font-size:1rem;margin:0 0 16px}
+  table{width:100%;border-collapse:collapse;font-size:.92rem}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--bg);font-weight:700;font-size:.82rem;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+  tr:last-child td{border-bottom:none}
+  .star{color:#f59e0b}
+  .pills{margin:16px 0 4px;display:flex;gap:8px;flex-wrap:wrap}
+  .pill{font-size:.8rem;padding:4px 10px;border-radius:999px;background:var(--bg);border:1px solid var(--line);color:var(--muted)}
+  .verdict{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin:28px 0}
+  .verdict h2{margin-top:0}
+  .compare td,.compare th{font-size:.9rem}
+  .ok{color:#16a34a;font-weight:600}
+  .warn{color:#d97706;font-weight:600}
+  footer{text-align:center;color:var(--muted);font-size:.82rem;padding:30px 24px 50px}
+  @media(max-width:640px){
+    header.hero h1{font-size:1.5rem}
+    #map{height:360px}
+    table{font-size:.82rem}
+    th,td{padding:7px 6px}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>🥾 Italy Trekking — Early October</h1>
+  <p>Four hand-picked routes · Dolomites · Liguria coast · Tuscany · 5–7 days</p>
+  <p>Choose your adventure: iconic peaks, gentle meadows, a clifftop coast, or a Tuscan pilgrim walk</p>
+  <div class="tag">Best window: 1–15 October · golden larches, empty trails, crisp light</div>
+</header>
+
+<div class="wrap">
+
+  <div class="intro">
+    <h2>Why October?</h2>
+    <p>Early October in the Dolomites means <strong>golden larch forests</strong>, dramatic low-angle light on the
+    pale limestone, and trails that are blissfully quiet after the summer crowds. The trade-off: most high mountain
+    huts (<em>rifugi</em>) close between late September and early October, and the first snow can dust the high passes.</p>
+    <div class="note">⚠️ <strong>Planning note:</strong> The classic Dolomites hut-to-hut traverse (Alta Via 1) was
+    dropped from this shortlist — most of its high <em>rifugi</em> close by late September, so October is poor timing.
+    All four options below are <strong>town- or hotel-based</strong> (you sleep in real beds, not huts), which makes
+    them far more reliable for our October dates. Options ③ &amp; ④ (the coast and Tuscany) are lower, warmer, and the
+    most October-proof of all.</div>
+  </div>
+
+  <h2 style="text-align:center">🗺️ The four routes at a glance</h2>
+  <div class="legend">
+    <span><i class="dot" style="background:var(--tre)"></i> Tre Cime / Sesto — Day hikes</span>
+    <span><i class="dot" style="background:var(--siu)"></i> Alpe di Siusi — Gentle meadows</span>
+    <span><i class="dot" style="background:var(--cin)"></i> Cinque Terre + Portofino — Coast</span>
+    <span><i class="dot" style="background:var(--fra)"></i> Via Francigena — Tuscan walk</span>
+  </div>
+  <div id="map"></div>
+
+  <!-- OPTION 1 -->
+  <div class="card tre">
+    <div class="card-head">
+      <h3>① Tre Cime / Sesto Dolomites — Iconic Peaks</h3>
+      <span class="sub">Valley base: Dobbiaco or Sesto · day hikes</span>
+    </div>
+    <div class="card-body">
+      <p class="why"><strong>Why:</strong> Maximum iconic scenery, minimum logistical risk. You sleep in a valley hotel
+      and day-hike. The Tre Cime di Lavaredo — three vertical towers — are the most photographed peaks in the Alps, and
+      October's golden light + empty trails make it magical.</p>
+      <table>
+        <tr><th>Day</th><th>Hike</th><th>Distance</th><th>Climb</th><th>Highlight</th></tr>
+        <tr><td>1</td><td>Tre Cime di Lavaredo loop <span class="star">★</span></td><td>~10 km</td><td>+350 m</td><td>The three towers + Rif. Locatelli</td></tr>
+        <tr><td>2</td><td>Val Fiscalina → Rif. Zsigmondy-Comici</td><td>~13 km</td><td>+900 m</td><td>Dramatic Sesto pyramids</td></tr>
+        <tr><td>3</td><td>Lago di Braies + Croda del Becco view</td><td>~7–15 km</td><td>+100–900 m</td><td>Turquoise lake</td></tr>
+        <tr><td>4</td><td>Cadini di Misurina viewpoint loop</td><td>~8 km</td><td>+500 m</td><td>Jagged spires overlook</td></tr>
+        <tr><td>5</td><td>Prato Piazza → Croda Rossa meadows</td><td>~12 km</td><td>+500 m</td><td>Wide plateau, WWI forts</td></tr>
+        <tr><td>6</td><td>Drei Zinnen sunrise / Cortina day</td><td>~10 km</td><td>+400 m</td><td>Golden-hour on Tre Cime</td></tr>
+      </table>
+      <p style="margin-top:14px"><strong>Highlights:</strong> Tre Cime loop, Rifugio Locatelli viewpoint,
+      Cadini di Misurina, Val Fiscalina.</p>
+      <div class="pills">
+        <span class="pill">Difficulty: Moderate</span>
+        <span class="pill">7–13 km/day</span>
+        <span class="pill">3–5 h walking</span>
+        <span class="pill">Daypack only</span>
+        <span class="pill" style="background:#ecfdf5;border-color:#a7f3d0;color:#047857">✅ Reliable in October</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPTION 2 -->
+  <div class="card siu">
+    <div class="card-head">
+      <h3>② Alpe di Siusi / Seiser Alm — Gentle Golden Meadows</h3>
+      <span class="sub">Valley base: Castelrotto or Compatsch · day hikes</span>
+    </div>
+    <div class="card-body">
+      <p class="why"><strong>Why:</strong> Europe's largest high-altitude meadow — rolling golden pastures under the
+      Sassolungo and Sciliar peaks. The easiest terrain and smoothest logistics of all three. Big views without big
+      climbs; perfect for a mixed-ability group and a relaxed pace.</p>
+      <table>
+        <tr><th>Day</th><th>Hike</th><th>Distance</th><th>Climb</th><th>Highlight</th></tr>
+        <tr><td>1</td><td>Compatsch → Saltria across the meadow <span class="star">★</span></td><td>~8 km</td><td>+200 m</td><td>Classic Seiser Alm panorama</td></tr>
+        <tr><td>2</td><td>Sassolungo (Langkofel) circuit</td><td>~12 km</td><td>+600 m</td><td>Loop beneath the big massif</td></tr>
+        <tr><td>3</td><td>Rif. Bolzano / Schlern (Sciliar) summit</td><td>~14 km</td><td>+800 m</td><td>Iconic plateau + Santner peak</td></tr>
+        <tr><td>4</td><td>Ortisei → Seceda ridgeline <span class="star">★</span></td><td>~9 km</td><td>+300 m (lift)</td><td>Knife-edge Odle/Geisler peaks</td></tr>
+        <tr><td>5</td><td>Puflatsch loop + Castelrotto village</td><td>~7 km</td><td>+250 m</td><td>Witches' benches, easy farewell</td></tr>
+      </table>
+      <p style="margin-top:14px"><strong>Highlights:</strong> Seiser Alm meadows at sunrise, Sassolungo circuit,
+      Seceda ridge, Val Gardena villages.</p>
+      <div class="pills">
+        <span class="pill">Difficulty: Easy–Moderate</span>
+        <span class="pill">7–14 km/day</span>
+        <span class="pill">2–5 h walking</span>
+        <span class="pill">Daypack only</span>
+        <span class="pill" style="background:#ecfdf5;border-color:#a7f3d0;color:#047857">✅ Easiest logistics</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPTION 3 -->
+  <div class="card cin">
+    <div class="card-head">
+      <h3>③ Cinque Terre + Portofino — The Ligurian Coast</h3>
+      <span class="sub">Clifftop coastal trails · Levanto → Portovenere · point-to-point</span>
+    </div>
+    <div class="card-body">
+      <p class="why"><strong>Why:</strong> A warm, sea-level alternative for when the mountains turn cold. Cliff-top
+      paths link five pastel fishing villages, with the Portofino promontory as a stunning add-on. October is arguably
+      the <strong>best month</strong>: mild temperatures, harvest season (grapes, pesto, focaccia), swimmable-ish sea,
+      and a fraction of the summer crowds. The most weather-proof and scenic of the warm options.</p>
+      <table>
+        <tr><th>Day</th><th>Hike</th><th>Distance</th><th>Climb</th><th>Highlight</th></tr>
+        <tr><td>1</td><td>Levanto → Monterosso (coastal path)</td><td>~7 km</td><td>+500 m</td><td>First view of the villages</td></tr>
+        <tr><td>2</td><td>Monterosso → Vernazza → Corniglia <span class="star">★</span></td><td>~9 km</td><td>+600 m</td><td>The classic clifftop trail</td></tr>
+        <tr><td>3</td><td>Corniglia → Manarola → Riomaggiore</td><td>~8 km</td><td>+500 m</td><td>Vineyard terraces over the sea</td></tr>
+        <tr><td>4</td><td>Riomaggiore → Portovenere (high trail)</td><td>~12 km</td><td>+700 m</td><td>Ridge views, Byron's Grotto</td></tr>
+        <tr><td>5</td><td>Portofino → San Fruttuoso abbey <span class="star">★</span></td><td>~10 km</td><td>+600 m</td><td>Secluded abbey cove</td></tr>
+        <tr><td>6</td><td>Portofino promontory loop / rest</td><td>~8 km</td><td>+400 m</td><td>Lighthouse &amp; harbour</td></tr>
+      </table>
+      <p style="margin-top:14px"><strong>Highlights:</strong> The five villages cliff path, Portovenere, Portofino →
+      San Fruttuoso abbey, sciacchetrà wine, seafood &amp; pesto.</p>
+      <div class="pills">
+        <span class="pill">Difficulty: Easy–Moderate</span>
+        <span class="pill">7–12 km/day</span>
+        <span class="pill">3–5 h walking</span>
+        <span class="pill">Daypack only</span>
+        <span class="pill" style="background:#ecfdf5;border-color:#a7f3d0;color:#047857">✅ Best October weather</span>
+      </div>
+      <div class="note" style="margin-top:16px">ℹ️ <strong>Note:</strong> Some low coastal links (e.g. the
+      <em>Via dell'Amore</em>) open/close depending on landslide repairs — the higher trails used above are always
+      open. Train connects all five villages, so days are easy to shorten or skip.</div>
+    </div>
+  </div>
+
+  <!-- OPTION 4 -->
+  <div class="card fra">
+    <div class="card-head">
+      <h3>④ Via Francigena — Lucca → Siena (Tuscany)</h3>
+      <span class="sub">Town-to-town pilgrim walk · point-to-point · ~135 km</span>
+    </div>
+    <div class="card-body">
+      <p class="why"><strong>Why:</strong> A completely different flavour from the Dolomites — a historic pilgrimage
+      route through the heart of <strong>Tuscany</strong>. Rolling cypress hills, vineyards, gravel farm roads and
+      medieval hilltop towns. You sleep in a different town every night (B&amp;Bs / pilgrim lodgings), so there are
+      <strong>no huts to worry about</strong>. It's a walk-and-wine-and-culture trip more than an alpine trek — and
+      it's the most weather-proof option for early October (grape &amp; olive harvest season).</p>
+      <table>
+        <tr><th>Day</th><th>From → To</th><th>Distance</th><th>Highlight</th></tr>
+        <tr><td>1</td><td>Lucca → Altopascio</td><td>~19 km</td><td>Walled city of Lucca start</td></tr>
+        <tr><td>2</td><td>Altopascio → San Miniato</td><td>~29 km</td><td>Long stage, hilltop town</td></tr>
+        <tr><td>3</td><td>San Miniato → Gambassi Terme</td><td>~24 km</td><td>Classic Tuscan countryside</td></tr>
+        <tr><td>4</td><td>Gambassi Terme → San Gimignano <span class="star">★</span></td><td>~13 km</td><td>The "town of towers"</td></tr>
+        <tr><td>5</td><td>San Gimignano → Monteriggioni</td><td>~30 km</td><td>Walled medieval village</td></tr>
+        <tr><td>6</td><td>Monteriggioni → Siena <span class="star">★</span></td><td>~20 km</td><td>Finish at Piazza del Campo</td></tr>
+      </table>
+      <p style="margin-top:14px"><strong>Highlights:</strong> Lucca's walls, San Gimignano towers, Monteriggioni,
+      Siena's Piazza del Campo — plus Chianti wine, pecorino and harvest-season food.</p>
+      <div class="pills">
+        <span class="pill">Difficulty: Easy–Moderate</span>
+        <span class="pill">13–30 km/day</span>
+        <span class="pill">Mostly flat–rolling</span>
+        <span class="pill">Daypack (bag transfer possible)</span>
+        <span class="pill" style="background:#ecfdf5;border-color:#a7f3d0;color:#047857">✅ Most October-proof</span>
+      </div>
+      <div class="note" style="margin-top:16px">ℹ️ <strong>Note:</strong> This is the route from a friend's suggestion.
+      It's <em>not</em> in the Dolomites — it's central Tuscany — so it offers a genuinely different style: cultural /
+      gastronomic walking rather than mountain scenery. A couple of stages are long (29–30 km) on gravel/road.</div>
+    </div>
+  </div>
+
+  <!-- VERDICT -->
+  <div class="verdict">
+    <h2>📊 Side-by-side comparison</h2>
+    <table class="compare">
+      <tr><th></th><th>① Tre Cime / Sesto</th><th>② Alpe di Siusi</th><th>③ Cinque Terre</th><th>④ Via Francigena</th></tr>
+      <tr><td><strong>Region</strong></td><td>Dolomites</td><td>Dolomites</td><td>Liguria coast</td><td>Tuscany</td></tr>
+      <tr><td><strong>Style</strong></td><td>Valley-based day hikes</td><td>Meadow-based day hikes</td><td>Coastal day hikes</td><td>Town-to-town walk</td></tr>
+      <tr><td><strong>Total (5–6 days)</strong></td><td>~55 km</td><td>~50 km</td><td>~45–55 km</td><td>~135 km</td></tr>
+      <tr><td><strong>Hardest day</strong></td><td>13 km / +900 m</td><td>14 km / +800 m</td><td>12 km / +700 m</td><td>30 km (flat-ish)</td></tr>
+      <tr><td><strong>Difficulty</strong></td><td>Moderate</td><td>Easy–Moderate</td><td>Easy–Moderate</td><td>Easy–Moderate</td></tr>
+      <tr><td><strong>Sleep</strong></td><td>One hotel base</td><td>One hotel base</td><td>1–2 village bases</td><td>Different town nightly</td></tr>
+      <tr><td><strong>October risk</strong></td><td class="ok">✅ Low</td><td class="ok">✅ Low</td><td class="ok">✅ Lowest (warmest)</td><td class="ok">✅ Lowest</td></tr>
+      <tr><td><strong>Best for</strong></td><td>Photographers / peak scenery</td><td>Relaxed pace, mixed group</td><td>Sea, sun, food &amp; wine</td><td>Culture, wine &amp; food</td></tr>
+    </table>
+    <p style="margin-top:18px"><strong>🏆 My steer for early October:</strong> For mountain scenery, go with
+    <strong>① Tre Cime / Sesto</strong> for jaw-dropping peaks with low hassle, or <strong>② Alpe di Siusi</strong>
+    if we want it relaxed. For the warmest, most reliable weather with sea views and great food, the
+    <strong>③ Cinque Terre + Portofino</strong> coast is my top pick — even more weather-proof than the mountains.
+    Choose <strong>④ Via Francigena</strong> if the group specifically wants the pilgrim-walk / medieval-town
+    experience. (The classic Alta Via 1 traverse was dropped — October is too late for its huts.)</p>
+  </div>
+
+  <footer>
+    Distances &amp; elevations are typical published figures and vary by exact trailheads/variants — treat as planning
+    estimates, not GPS-exact. Map data © OpenStreetMap contributors.<br>
+    Made for our October trekking trip 🍂 · Pick your favourite and let's lock dates!
+  </footer>
+
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  var map = L.map('map', { scrollWheelZoom:false }).setView([46.58, 12.0], 9);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    maxZoom: 19,
+    subdomains: 'abcd',
+    attribution: '© OpenStreetMap contributors © CARTO'
+  }).addTo(map);
+
+  var colors = { tre:'#2e86de', siu:'#27ae60', cin:'#e67e22', fra:'#8e44ad' };
+
+  function marker(lat, lng, color, label){
+    var m = L.circleMarker([lat,lng], {
+      radius:7, color:'#fff', weight:2, fillColor:color, fillOpacity:1
+    }).addTo(map);
+    m.bindPopup('<strong>'+label+'</strong>');
+    m.bindTooltip(label, {permanent:false, direction:'top'});
+    return m;
+  }
+
+  // ---- Option 1: Tre Cime / Sesto (hub + spokes) ----
+  var treHub = [46.7350,12.2210]; // Dobbiaco base
+  var tre = [
+    [46.7350,12.2210,'Dobbiaco (base)'],
+    [46.7008,12.3490,'Sesto / Val Fiscalina'],
+    [46.6185,12.3055,'★ Tre Cime / Rif. Locatelli'],
+    [46.6946,12.0856,'Lago di Braies'],
+    [46.5995,12.2730,'Cadini di Misurina'],
+    [46.6655,12.2230,'Prato Piazza'],
+    [46.5830,12.2540,'Misurina']
+  ];
+  tre.forEach(function(p){
+    L.polyline([treHub,[p[0],p[1]]], {color:colors.tre, weight:2, opacity:.45, dashArray:'4 6'}).addTo(map);
+    marker(p[0],p[1],colors.tre,p[2]);
+  });
+
+  // ---- Option 2: Alpe di Siusi (hub + spokes) ----
+  var siuHub = [46.5670,11.5600]; // Castelrotto base
+  var siu = [
+    [46.5670,11.5600,'Castelrotto (base)'],
+    [46.5390,11.6210,'★ Compatsch / Seiser Alm'],
+    [46.5290,11.6500,'Saltria'],
+    [46.5100,11.7330,'Sassolungo'],
+    [46.5000,11.5670,'Schlern / Sciliar'],
+    [46.5760,11.6720,'Ortisei'],
+    [46.6050,11.7100,'★ Seceda']
+  ];
+  siu.forEach(function(p){
+    L.polyline([siuHub,[p[0],p[1]]], {color:colors.siu, weight:2, opacity:.45, dashArray:'4 6'}).addTo(map);
+    marker(p[0],p[1],colors.siu,p[2]);
+  });
+
+  // ---- Option 3: Cinque Terre + Portofino (Liguria coast) ----
+  var cin = [
+    [44.1700,9.6100,'Levanto (start)'],
+    [44.1460,9.6540,'Monterosso'],
+    [44.1350,9.6840,'★ Vernazza'],
+    [44.1190,9.7100,'Corniglia'],
+    [44.1070,9.7280,'Manarola'],
+    [44.0990,9.7380,'Riomaggiore'],
+    [44.0500,9.8370,'Portovenere']
+  ];
+  L.polyline(cin.map(p=>[p[0],p[1]]), {color:colors.cin, weight:4, opacity:.85}).addTo(map);
+  cin.forEach(p=>marker(p[0],p[1],colors.cin,p[2]));
+  // Portofino add-on (separate promontory, west of Cinque Terre)
+  var cinPorto = [
+    [44.3030,9.2100,'★ Portofino'],
+    [44.3160,9.1730,'San Fruttuoso abbey']
+  ];
+  L.polyline(cinPorto.map(p=>[p[0],p[1]]), {color:colors.cin, weight:4, opacity:.85, dashArray:'2 5'}).addTo(map);
+  cinPorto.forEach(p=>marker(p[0],p[1],colors.cin,p[2]));
+
+  // ---- Option 4: Via Francigena (Lucca → Siena, Tuscany) ----
+  var fra = [
+    [43.8430,10.5050,'1 · Lucca (start)'],
+    [43.8130,10.6770,'Altopascio'],
+    [43.6790,10.8510,'San Miniato'],
+    [43.5400,10.9560,'Gambassi Terme'],
+    [43.4677,11.0430,'★ San Gimignano'],
+    [43.3910,11.2230,'Monteriggioni'],
+    [43.3188,11.3308,'★ Siena (finish)']
+  ];
+  L.polyline(fra.map(p=>[p[0],p[1]]), {color:colors.fra, weight:4, opacity:.85}).addTo(map);
+  fra.forEach(p=>marker(p[0],p[1],colors.fra,p[2]));
+
+  // Fit all
+  var all = tre.concat(siu).concat(cin).concat(cinPorto).concat(fra).map(p=>[p[0],p[1]]);
+  map.fitBounds(L.latLngBounds(all).pad(0.12));
+</script>
+
+</body>
+</html>
